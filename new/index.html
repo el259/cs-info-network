@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        By: Enrique Lopez, Paris Kalathas
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Computer Science Map</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/cytoscape@3.30.4/dist/cytoscape.min.js"></script>
+</head>
+
+<body>
+
+    <div class="page">
+
+        <header>
+            <h1>A Map of Computer Science</h1>
+            <p>Explore connections between Computer Science topics.</p>
+        </header>
+
+        <main>
+
+            <!-- Graph View-->
+            <div id="cy"></div>
+
+            <!-- Information Panel -->
+            <aside id="info-panel">
+                <h2 id="info-title">Select a topic</h2>
+
+                <p id="info-description">
+                    Click a node to learn more about it.
+                </p>
+
+                <div id="info-media"></div>
+
+                <div id="info-connections"></div>
+
+            </aside>
+
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
