@@ -113,9 +113,46 @@ const cy = cytoscape({
                 level: 1,
                 label: "Hardware",
                 description:
-                    "TO-DO: Fill"
+                    "Physical components of a computer system."
             }
         },
+
+                {
+                    data: {
+                        id: "cpu",
+                        level: 2,
+                        label: "CPU (Central Processing Unit)",
+                        description:
+                            "The CPU is the primary component of a computer that performs most of the processing inside a computer. It executes instructions from programs, performing basic arithmetic, logic, control, and input/output operations."
+                    }
+                },
+                {
+                    data: {
+                        id: "gpu",
+                        level: 2,
+                        label: "GPU (Graphics Processing Unit)",
+                        description:
+                            "The GPU is a specialized electronic circuit designed to accelerate the processing of images and videos. It is highly efficient at performing parallel computations, making it ideal for rendering graphics and handling complex visual tasks."
+                    }
+                },
+                {
+                    data: {
+                        id: "ram",
+                        level: 2,
+                        label: "RAM (Random Access Memory)",
+                        description:
+                            "RAM is a type of computer memory that allows data to be read and written in almost the same amount of time, regardless of the physical location of data inside the memory."
+                    }
+                },
+                {
+                    data: {
+                        id: "motherboard",
+                        level: 2,
+                        label: "Motherboard",
+                        description:
+                            "The motherboard is the main circuit board of a computer system, connecting all the components together."
+                    }
+                },
 
         {
             data: {
@@ -123,9 +160,19 @@ const cy = cytoscape({
                 level: 1,
                 label: "Mathematics",
                 description:
-                    "TO-DO: Fill"
+                    "The study of numbers, quantities, and shapes and their relationships."
             }
         },
+
+                {
+                    data: {
+                        id: "logic",
+                        level: 2,
+                        label: "Logic",
+                        description:
+                            "The study of correct reasoning and argumentation. Values are generally true or false."
+                    }
+                },
 
         {
             data: {
@@ -282,7 +329,7 @@ const cy = cytoscape({
                     level: 2,
                     label: "Machine Learning",
                     description:
-                        "Fill"
+                        "Machine learning is a subset of artificial intelligence that focuses on developing algorithms and models that allow computers to learn from and make predictions or decisions based on data. It involves training a model on a dataset, allowing it to identify patterns and relationships, and then using that model to make predictions or classifications on new, unseen data."
                     }
                 },
 
@@ -292,7 +339,7 @@ const cy = cytoscape({
                     level: 2,
                     label: "Robotics",
                     description:
-                        "Fill"
+                        "Robotics is an interdisciplinary field that combines engineering and computer science to design, build, and operate robots."
                     }
                 },
 
@@ -302,7 +349,7 @@ const cy = cytoscape({
                     level: 2,
                     label: "Computer Vision",
                     description:
-                        "Fill"
+                        "Computer vision is a field of artificial intelligence that enables computers to interpret and understand visual information from the world, such as images and videos. It involves developing algorithms and models that allow machines to analyze, process, and extract meaningful information from visual data."
                     }
                 },
 
@@ -312,7 +359,7 @@ const cy = cytoscape({
                     level: 2,
                     label: "Natural Language Processing",
                     description:
-                        "Fill"
+                        "Natural language processing (NLP) is a field of artificial intelligence that focuses on enabling computers to understand, interpret, and generate human language. It involves developing algorithms and models that allow machines to process and analyze large amounts of natural language data."
                     }
                 },
 
@@ -322,7 +369,7 @@ const cy = cytoscape({
                     level: 2,
                     label: "Generative AI",
                     description:
-                        "Fill"
+                        "Generative AI is a branch of artificial intelligence that focuses on creating systems capable of generating new content, such as text, images, or music, that is similar to the training data but not identical."
                     }
                 },
 
@@ -625,6 +672,48 @@ const cy = cytoscape({
             }
         },
 
+        {
+            data: {
+                id: "hardware-cpu",
+                source: "hardware",
+                target: "cpu",
+                relationship: "is a part of"
+            }
+        },
+        {
+            data: {
+                id: "hardware-gpu",
+                source: "hardware",
+                target: "gpu",
+                relationship: "is a part of"
+            }
+        },
+        {
+            data: {
+                id: "hardware-ram",
+                source: "hardware",
+                target: "ram",
+                relationship: "is a part of"
+            }
+        },
+        {
+            data: {
+                id: "hardware-motherboard",
+                source: "hardware",
+                target: "motherboard",
+                relationship: "is a part of"
+            }
+        },
+
+        {
+            data: {
+                id: "math-logic",
+                source: "mathematics",
+                target: "logic",
+                relationship: "is a part of"
+            }
+        },
+
 
     ],
 
@@ -777,8 +866,15 @@ function applyCustomLayout() {
             "generative-ai": { x: 700, y: 1000 },
         // Level 1
         "hardware": { x: 1300, y: 300 },
+            // Level 2
+            "cpu": { x: 1300, y: 300 },
+            "gpu": { x: 1350, y: 300 },
+            "ram": { x: 1250, y: 300 },
+            "motherboard": { x: 1300, y: 400 },
         // Level 1
-        "mathematics": { x: 1300, y: 500 }
+        "mathematics": { x: 1300, y: 500 },
+            //level 2
+            "logic": { x: 1300, y: 600 }
     };
 
     cy.nodes().forEach(node => {
