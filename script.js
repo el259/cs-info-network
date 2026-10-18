@@ -28,7 +28,12 @@ const cy = cytoscape({
                 level: 0,
                 label: "Computer Science",
                 description:
-                    "The study of computation, information, algorithms, and computational systems."
+                    "The study of computation, information, algorithms, and computational systems.",
+                video: "https://www.youtube.com/embed/z-EtmaFJieY",
+                references: [
+                    { title: "Computer Science - Wikipedia", url: "https://en.wikipedia.org/wiki/Computer_science" },
+                    { title: "ACM Computing Classification System", url: "https://dl.acm.org/ccs" }
+                ]
             }
         },
 
@@ -60,7 +65,12 @@ const cy = cytoscape({
                         label: "Functions",
                         description:
                             "Functions are reusable blocks of code that perform a particular task repeatedly. The example below shows a function that adds two numbers together and returns the result.",
-                        image: "imgs/code-example-add-2.png"
+                        image: "imgs/code-example-add-2.png",
+                        pseudocode: `function add(a, b):
+    return a + b
+
+result ← add(3, 5)
+print result`
                     }
                 },
 
@@ -190,7 +200,13 @@ const cy = cytoscape({
                         level: 2,
                         label: "Sorting Algorithms",
                         description:
-                            "Algorithms for arranging data in a particular order."
+                            "Algorithms for arranging data in a particular order.",
+                        pseudocode: `procedure bubbleSort(A):
+    n ← length(A)
+    for i ← 0 to n-2:
+        for j ← 0 to n-i-2:
+            if A[j] > A[j+1]:
+                swap A[j] and A[j+1]`
                     }
                 },
 
@@ -329,7 +345,10 @@ const cy = cytoscape({
                     level: 2,
                     label: "Machine Learning",
                     description:
-                        "Machine learning is a subset of artificial intelligence that focuses on developing algorithms and models that allow computers to learn from and make predictions or decisions based on data. It involves training a model on a dataset, allowing it to identify patterns and relationships, and then using that model to make predictions or classifications on new, unseen data."
+                        "Machine learning is a subset of artificial intelligence that focuses on developing algorithms and models that allow computers to learn from and make predictions or decisions based on data. It involves training a model on a dataset, allowing it to identify patterns and relationships, and then using that model to make predictions or classifications on new, unseen data.",
+                    references: [
+                        { title: "Machine Learning - Wikipedia", url: "https://en.wikipedia.org/wiki/Machine_learning" }
+                    ]
                     }
                 },
 
@@ -369,7 +388,11 @@ const cy = cytoscape({
                     level: 2,
                     label: "Generative AI",
                     description:
-                        "Generative AI is a branch of artificial intelligence that focuses on creating systems capable of generating new content, such as text, images, or music, that is similar to the training data but not identical."
+                        "Generative AI is a branch of artificial intelligence that focuses on creating systems capable of generating new content, such as text, images, or music, that is similar to the training data but not identical.",
+                    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                    references: [
+                        { title: "Generative artificial intelligence - Wikipedia", url: "https://en.wikipedia.org/wiki/Generative_artificial_intelligence" }
+                    ]
                     }
                 },
 
@@ -946,7 +969,7 @@ function showNodeInfo(node) {
         video.src = node.data("video");
 
         video.width = "100%";
-        video.height = "200";
+        video.height = "220";
 
         video.frameBorder = "0";
 
@@ -955,6 +978,55 @@ function showNodeInfo(node) {
         video.classList.add("info-video");
 
         mediaPanel.appendChild(video);
+    }
+
+
+    // ----------------------------------
+    // Display pseudocode if available
+    // ----------------------------------
+
+    const pseudocodePanel = document.getElementById("info-pseudocode");
+    pseudocodePanel.innerHTML = "";
+
+    const pseudocode = node.data("pseudocode");
+    if (pseudocode) {
+        const heading = document.createElement("h3");
+        heading.textContent = "Pseudocode";
+        pseudocodePanel.appendChild(heading);
+
+        const pre = document.createElement("pre");
+        pre.classList.add("pseudocode");
+        pre.textContent = pseudocode;
+        pseudocodePanel.appendChild(pre);
+    }
+
+
+    // ----------------------------------
+    // Display references if available
+    // ----------------------------------
+
+    const referencesPanel = document.getElementById("info-references");
+    referencesPanel.innerHTML = "";
+
+    const references = node.data("references");
+    if (references && references.length > 0) {
+        const refHeading = document.createElement("h3");
+        refHeading.textContent = "References";
+        referencesPanel.appendChild(refHeading);
+
+        references.forEach(function(ref) {
+            const refDiv = document.createElement("div");
+            refDiv.classList.add("reference");
+
+            const link = document.createElement("a");
+            link.href = ref.url;
+            link.textContent = ref.title || ref.url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+
+            refDiv.appendChild(link);
+            referencesPanel.appendChild(refDiv);
+        });
     }
 
 
@@ -1129,6 +1201,8 @@ cy.on("tap", function(event) {
         document.getElementById("info-title").textContent = "Select a topic";
         document.getElementById("info-description").textContent = "Click a node to learn more about it.";
         document.getElementById("info-media").innerHTML = "";
+        document.getElementById("info-pseudocode").innerHTML = "";
+        document.getElementById("info-references").innerHTML = "";
         document.getElementById("info-connections").innerHTML = "";
     }
 });

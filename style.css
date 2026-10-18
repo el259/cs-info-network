@@ -1,45 +1,65 @@
 /*
     By: Enrique Lopez, Paris Kalathas
+    Modern educational theme
 */
 
 * {
     box-sizing: border-box;
 }
 
+:root {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --panel-bg: #f8fafc;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --accent: #0ea5e9;
+    --accent-hover: #0284c7;
+    --code-bg: #0f172a;
+    --code-text: #e2e8f0;
+    --radius: 10px;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
 }
 
 .page {
     width: 100%;
     height: 100vh;
-
     display: flex;
     flex-direction: column;
 }
 
 header {
-    padding: 20px 30px;
-    background: white;
-    border-bottom: 1px solid #ddd;
+    padding: 18px 28px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow);
 }
 
 header h1 {
-    margin: 0 0 5px 0;
+    margin: 0 0 4px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
 header p {
     margin: 0;
-    color: #666;
+    color: var(--text-muted);
+    font-size: 0.95rem;
 }
 
 main {
     flex: 1;
-
     display: flex;
-
     min-height: 0;
 }
 
@@ -49,11 +69,9 @@ main {
 
 #cy {
     flex: 1;
-
     min-width: 0;
     height: 100%;
-
-    background: #ffffff;
+    background: var(--surface);
 }
 
 /* -------------------------
@@ -61,60 +79,160 @@ main {
 ------------------------- */
 
 #info-panel {
-    width: 300px;
-
-    padding: 20px;
-
-    background: #fafafa;
-    border-left: 1px solid #ddd;
-
+    width: 420px;
+    padding: 24px;
+    background: var(--panel-bg);
+    border-left: 1px solid var(--border);
     overflow-y: auto;
 }
 
 #info-panel h2 {
-    margin-top: 0;
+    margin: 0 0 8px 0;
+    font-size: 1.35rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
 }
 
 #info-description {
-    color: #555;
-    line-height: 1.5;
-}
-
-#info-connections {
-    margin-top: 25px;
-}
-
-#info-connections h3 {
-    margin-bottom: 10px;
-}
-
-.connection {
-    padding: 8px 10px;
-    margin-bottom: 6px;
-
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-
-    cursor: pointer;
-}
-
-.connection:hover {
-    background: #eeeeee;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+    font-size: 0.95rem;
 }
 
 #info-media {
-    margin: 20px 0;
+    margin: 0 0 24px 0;
 }
 
 .info-image {
     width: 100%;
     max-width: 100%;
-    border-radius: 6px;
+    height: 220px;
+    object-fit: contain;
+    object-position: center;
+    background: #f1f5f9;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: block;
 }
 
 .info-video {
     width: 100%;
+    height: 220px;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: block;
+}
+
+/* Pseudocode */
+#info-pseudocode {
+    margin: 0 0 24px 0;
+}
+
+#info-pseudocode h3 {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.pseudocode {
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 16px;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    white-space: pre;
+    margin: 0;
+    box-shadow: var(--shadow);
+}
+
+/* References */
+#info-references {
+    margin: 0 0 24px 0;
+}
+
+#info-references h3 {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.reference {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.reference:hover {
+    border-color: var(--accent);
+    box-shadow: 0 1px 4px rgba(14, 165, 233, 0.15);
+}
+
+.reference a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.92rem;
+}
+
+.reference a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+/* Connections */
+#info-connections {
+    margin-top: 0;
+}
+
+#info-connections h3 {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.connection {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.92rem;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.connection:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.connection:active {
+    transform: scale(0.99);
+}
+
+/* Scrollbar polish */
+#info-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+#info-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#info-panel::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+#info-panel::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
 }
